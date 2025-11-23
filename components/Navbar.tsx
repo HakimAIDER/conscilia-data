@@ -14,11 +14,12 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
+    { name: 'Accueil', href: '#home' },
     { name: 'Services', href: '#services' },
-    { name: 'Use Cases', href: '#use-cases' },
-    { name: 'À propos', href: '#about' },
-    { name: 'Ressources', href: '#resources' },
-    { name: 'Carrières', href: '#jobs' },
+    { name: 'Valeurs', href: '#values' },
+    { name: 'Expertises', href: '#expertise' },
+    { name: 'Formations', href: '#training' },
+    { name: 'Emplois', href: '#jobs' },
   ];
 
   return (
@@ -36,8 +37,8 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-10">
-            <div className="flex space-x-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-10">
+            <div className="flex space-x-6 xl:space-x-8">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -54,7 +55,7 @@ const Navbar: React.FC = () => {
                 href="#contact" 
                 className="bg-brand-dark text-white hover:bg-slate-800 px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-brand-dark/20 hover:shadow-xl hover:-translate-y-0.5 flex items-center gap-2"
             >
-                Demander une démo
+                Contact
             </a>
           </div>
 
@@ -94,7 +95,7 @@ const Navbar: React.FC = () => {
                 onClick={() => setIsOpen(false)}
                 className="block w-full py-4 text-center rounded-xl text-base font-bold bg-brand-dark text-white shadow-lg mt-4"
             >
-                Demander une démo
+                Contactez-nous
             </a>
           </div>
         </div>

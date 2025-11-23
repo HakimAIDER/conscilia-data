@@ -13,10 +13,10 @@ const Footer: React.FC = () => {
              </div>
              <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
                 ESN spécialisée en Business Intelligence et Data Management. 
-                Nous transformons la complexité en clarté pour les entreprises leaders.
+                Fondée en 2019, nous transformons la complexité en clarté pour les entreprises leaders.
              </p>
              <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-primary hover:text-brand-primary hover:bg-brand-primary/5 transition-all"><Linkedin size={18} /></a>
+                <a href="https://www.linkedin.com/company/consilia-data/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-primary hover:text-brand-primary hover:bg-brand-primary/5 transition-all"><Linkedin size={18} /></a>
                 <a href="#" className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-secondary hover:text-brand-secondary hover:bg-brand-secondary/5 transition-all"><Twitter size={18} /></a>
              </div>
           </div>
@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
                 <li><a href="#about" className="hover:text-brand-primary transition-colors">À propos</a></li>
                 <li><a href="#services" className="hover:text-brand-primary transition-colors">Nos Services</a></li>
                 <li><a href="#jobs" className="hover:text-brand-primary transition-colors">Carrières</a></li>
-                <li><a href="#contact" className="hover:text-brand-primary transition-colors">Contact</a></li>
+                <li><a href="#training" className="hover:text-brand-primary transition-colors">Formations</a></li>
             </ul>
           </div>
           
@@ -44,14 +44,14 @@ const Footer: React.FC = () => {
                 </li>
                 <li className="flex items-center gap-4">
                     <Phone size={18} className="text-brand-primary" />
-                    <a href="tel:+33605746320" className="hover:text-brand-dark transition-colors">+33 605 74 63 20</a>
+                    <a href="tel:+33651994618" className="hover:text-brand-dark transition-colors">06 51 99 46 18</a>
                 </li>
             </ul>
           </div>
         </div>
         
         <div className="border-t border-slate-100 mt-20 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-400 font-medium">
-          <p>&copy; {new Date().getFullYear()} Consilia-Data. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Consilia-Data. Tous droits réservés.</p>
           <div className="flex gap-8 mt-4 md:mt-0">
              <a href="#" className="hover:text-brand-dark transition-colors">Mentions Légales</a>
              <a href="#" className="hover:text-brand-dark transition-colors">Politique de Confidentialité</a>

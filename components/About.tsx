@@ -1,21 +1,21 @@
 import React from 'react';
-import { ShieldCheck, Lightbulb, Users } from 'lucide-react';
+import { ShieldCheck, Lightbulb, Users, MapPin, Award } from 'lucide-react';
 
 const values = [
   {
-    title: "Simplicité",
+    title: "Expertise Technique",
     icon: Lightbulb,
-    description: "Rendre la tech accessible et compréhensible."
+    description: "Talend, Power BI, Databricks, Snowflake, Azure."
   },
   {
-    title: "Rigueur",
-    icon: ShieldCheck,
-    description: "Une exigence qualité sans compromis."
+    title: "Certification Qualiopi",
+    icon: Award,
+    description: "Organisme de formation certifié depuis 2023."
   },
   {
-    title: "Pédagogie",
-    icon: Users,
-    description: "Transmettre pour pérenniser vos projets."
+    title: "Proximité Paris",
+    icon: MapPin,
+    description: "Situé près de l'Arc de Triomphe."
   }
 ];
 
@@ -27,13 +27,22 @@ const About: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
             <div className="order-2 lg:order-1">
-                <span className="inline-block py-1 px-3 rounded-full bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-widest mb-4">Notre Équipe</span>
-                <h2 className="text-4xl font-extrabold text-brand-dark mb-6">Plus qu'une ESN,<br />un <span className="text-brand-primary">Partenaire de Confiance</span>.</h2>
-                <p className="text-lg text-slate-600 leading-relaxed mb-8">
-                    Chez Consilia-Data, nous croyons que la technologie n'est qu'un moyen. 
-                    Notre véritable métier est de comprendre votre business pour lui apporter les leviers de croissance qu'il mérite.
-                    Nous cultivons la proximité et l'excellence technique.
-                </p>
+                <span className="inline-block py-1 px-3 rounded-full bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-widest mb-4">À Propos de Nous</span>
+                <h2 className="text-4xl font-extrabold text-brand-dark mb-6">
+                    Consilia-Data : Votre Partenaire <span className="text-brand-primary">Data</span> à Paris
+                </h2>
+                
+                <div className="text-slate-600 leading-relaxed mb-8 space-y-4 text-lg">
+                    <p>
+                        Située près de l’<strong>Arc de Triomphe</strong> à Paris et fondée fin 2019, Consilia-Data accompagne les entreprises dans leur transformation digitale grâce à des solutions innovantes.
+                    </p>
+                    <p>
+                        Notre équipe d'experts couvre la <strong>modélisation, l'ETL, la restitution et l'architecture des données</strong>, maîtrisant des outils comme <strong>Talend, Power BI, Databricks et Snowflake</strong>. Nous intervenons en environnement On-Premise et Cloud.
+                    </p>
+                    <p>
+                        Certifiés <strong>Qualiopi</strong> depuis début 2023, nous plaçons la formation au cœur de notre modèle, garantissant le succès de vos projets décisionnels grâce à nos consultants en CDI hautement qualifiés.
+                    </p>
+                </div>
                 
                 {/* Values List */}
                 <div className="space-y-6">
