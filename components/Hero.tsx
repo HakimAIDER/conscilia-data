@@ -6,7 +6,7 @@ const Hero: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Parallax effect
+    // Parallax effect for mouse movement
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: e.clientX,
@@ -16,9 +16,9 @@ const Hero: React.FC = () => {
 
     window.addEventListener('mousemove', handleMouseMove);
     
-    // Slow down video for a more subtle, premium feel
+    // Ensure video plays with a modern, slow cinematic feel
     if (videoRef.current) {
-        videoRef.current.playbackRate = 0.6;
+        videoRef.current.playbackRate = 0.75;
         videoRef.current.play().catch(e => console.error("Autoplay blocked", e));
     }
 
@@ -26,9 +26,14 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white pt-20">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-50 pt-20">
       
-      {/* Background Video Layer */}
+      {/* === Background Layers === */}
+      
+      {/* 1. Base Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-100 z-0"></div>
+
+      {/* 2. Abstract Data Video */}
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
         <video 
           ref={videoRef}
@@ -36,66 +41,58 @@ const Hero: React.FC = () => {
           loop 
           muted 
           playsInline 
-          className="absolute min-w-full min-h-full object-cover w-full h-full opacity-30 mix-blend-multiply filter saturate-0 contrast-125"
+          poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1920"
+          className="absolute min-w-full min-h-full object-cover w-full h-full opacity-40 mix-blend-multiply filter grayscale contrast-125"
         >
-          {/* Abstract Data/Network Lines on White Background */}
+          {/* Abstract Network/Data Connections */}
           <source src="https://assets.mixkit.co/videos/preview/mixkit-network-connection-of-dots-and-lines-on-white-background-27388-large.mp4" type="video/mp4" />
         </video>
-        {/* Gradient Overlay to fade bottom and ensure text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/80 to-white"></div>
       </div>
 
-      {/* Background Grid Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.15] mask-gradient z-0 pointer-events-none"></div>
+      {/* 3. Text Readability Overlays */}
+      {/* Fade out the video at the bottom */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-white z-10"></div>
+      {/* Radial fade to center attention and blur edges slightly */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(255,255,255,0.8)_100%)] z-10"></div>
+      
+      {/* 4. Technical Grid Texture (Subtle) */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.08] z-10 pointer-events-none mix-blend-darken"></div>
 
-      {/* Interactive Parallax Blobs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden transition-transform duration-700 ease-out z-0">
+      {/* 5. Interactive Floating Blobs (Parallax) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-20">
         <div 
-            className="absolute top-[-10%] right-[-5%] w-[800px] h-[800px] bg-brand-primary/10 rounded-full blur-3xl mix-blend-multiply"
+            className="absolute top-[10%] right-[5%] w-[600px] h-[600px] bg-gradient-to-br from-brand-primary/20 to-transparent rounded-full blur-[80px] mix-blend-multiply opacity-60 transition-transform duration-300 ease-out"
             style={{ transform: `translate(${mousePosition.x * -0.02}px, ${mousePosition.y * -0.02}px)` }}
         ></div>
         <div 
-            className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-secondary/10 rounded-full blur-3xl mix-blend-multiply"
-            style={{ transform: `translate(${mousePosition.x * 0.03}px, ${mousePosition.y * 0.03}px)` }}
+            className="absolute bottom-[10%] left-[5%] w-[500px] h-[500px] bg-gradient-to-tr from-brand-secondary/20 to-transparent rounded-full blur-[80px] mix-blend-multiply opacity-60 transition-transform duration-300 ease-out"
+            style={{ transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)` }}
         ></div>
-        
-        {/* SVG Decorative Circles - Rotating */}
-        <svg 
-            className="absolute top-0 right-0 w-[800px] h-[800px] opacity-30 animate-[spin_60s_linear_infinite]" 
-            viewBox="0 0 100 100"
-        >
-          <circle cx="50" cy="50" r="40" fill="none" stroke="url(#grad1)" strokeWidth="0.1" strokeDasharray="10 5" />
-          <circle cx="50" cy="50" r="30" fill="none" stroke="url(#grad1)" strokeWidth="0.1" strokeDasharray="5 5" />
-          <defs>
-            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#2563eb" />
-              <stop offset="100%" stopColor="#ec4899" />
-            </linearGradient>
-          </defs>
-        </svg>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+      {/* === Foreground Content === */}
+      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
         
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/80 border border-slate-200 shadow-sm mb-10 animate-fade-in-up hover:shadow-md transition-shadow cursor-default backdrop-blur-md">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm border border-slate-200 shadow-sm mb-10 animate-fade-in-up hover:shadow-md transition-all cursor-default group">
             <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-secondary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-secondary"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-primary"></span>
             </span>
-            <span className="text-xs font-bold text-slate-600 tracking-widest uppercase font-heading">
+            <span className="text-xs font-bold text-slate-600 tracking-widest uppercase font-heading group-hover:text-brand-primary transition-colors">
                 ESN & Data Intelligence
             </span>
         </div>
 
         {/* Main Heading */}
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold text-brand-dark mb-8 leading-[0.9] tracking-tight animate-fade-in-up mix-blend-multiply" style={{animationDelay: '0.1s'}}>
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold text-brand-dark mb-8 leading-[0.9] tracking-tight animate-fade-in-up" style={{animationDelay: '0.1s'}}>
           WE BRING<br />
           VALUE TO<br />
           YOUR <span className="gradient-text relative inline-block">
               DATA
-              <svg className="absolute w-full h-3 -bottom-1 left-0 text-brand-secondary opacity-30" viewBox="0 0 100 10" preserveAspectRatio="none">
-                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
+              {/* Underline Decoration */}
+              <svg className="absolute w-full h-3 -bottom-2 left-0 text-brand-secondary opacity-40" viewBox="0 0 100 10" preserveAspectRatio="none">
+                  <path d="M0 5 Q 50 15 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
               </svg>
           </span>
         </h1>
@@ -119,7 +116,7 @@ const Hero: React.FC = () => {
           </a>
           <a
             href="#contact"
-            className="px-8 py-4 bg-white/60 backdrop-blur-md text-brand-dark hover:text-brand-primary border border-slate-200 text-lg font-bold rounded-full transition-all hover:border-brand-primary/30 hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2 group"
+            className="px-8 py-4 bg-white/70 backdrop-blur-md text-brand-dark hover:text-brand-primary border border-slate-200 text-lg font-bold rounded-full transition-all hover:border-brand-primary/30 hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2 group"
           >
             Nous contacter
             <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-brand-primary transition-colors" />

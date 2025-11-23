@@ -28,12 +28,12 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center cursor-pointer transition-opacity hover:opacity-80" onClick={() => window.location.href = '#home'}>
+          {/* Logo with Animation */}
+          <div className="flex-shrink-0 flex items-center cursor-pointer transition-transform duration-300 hover:scale-105" onClick={() => window.location.href = '#home'}>
             <img 
                 src="https://i.postimg.cc/ZRv5wZn2/logo-consilia-data-removebg-preview.png" 
                 alt="Consilia-Data Logo" 
-                className="h-8 md:h-10 w-auto object-contain" 
+                className="h-8 md:h-10 w-auto object-contain animate-pulse-slow drop-shadow-sm filter" 
             />
           </div>
 
