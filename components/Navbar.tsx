@@ -4,14 +4,7 @@ import { Menu, X } from 'lucide-react';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [activeSection, setActiveSection] = useState('home');
 
   const navLinks = [
     { name: 'Accueil', href: '#home' },
@@ -22,6 +15,43 @@ const Navbar: React.FC = () => {
     { name: 'Formations', href: '#training' },
     { name: 'Nos Clients', href: '#clients' },
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+
+      // Determine active section
+      // Offset accounts for navbar height and some buffer
+      const scrollPosition = window.scrollY + 100;
+
+      for (const link of navLinks) {
+        const sectionId = link.href.substring(1);
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
+
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(sectionId);
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleLinkClick = (href: string) => {
+    setActiveSection(href.substring(1));
+    setIsOpen(false);
+  };
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/80 backdrop-blur-xl border-b border-slate-100 shadow-sm' : 'bg-transparent'}`}>
@@ -40,16 +70,22 @@ const Navbar: React.FC = () => {
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-10">
             <div className="flex space-x-6 xl:space-x-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm font-medium text-slate-600 hover:text-brand-primary transition-colors relative group"
-                >
-                  {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-brand transition-all group-hover:w-full"></span>
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.substring(1);
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setActiveSection(link.href.substring(1))}
+                    className={`text-sm font-medium transition-colors relative group py-1 ${isActive ? 'text-brand-primary' : 'text-slate-600 hover:text-brand-primary'}`}
+                  >
+                    {link.name}
+                    <span 
+                        className={`absolute bottom-0 left-0 h-0.5 bg-gradient-brand transition-all duration-300 ease-out ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}
+                    ></span>
+                  </a>
+                );
+              })}
             </div>
             
             <a 
@@ -72,25 +108,28 @@ const Navbar: React.FC = () => {
         </div>
       </div>
       
-      {/* Decorative Bottom Line (only when not scrolled, for initial impact) */}
+      {/* Decorative Bottom Line (only when not scrolled) */}
       {!scrolled && (
         <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-primary/20 to-transparent"></div>
       )}
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-slate-100 shadow-xl animate-fade-in-up lg:hidden">
+        <div className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-slate-100 shadow-xl animate-fade-in-up lg:hidden h-screen">
           <div className="flex flex-col p-6 space-y-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="block text-lg font-medium text-slate-800 hover:text-brand-primary"
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.substring(1);
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => handleLinkClick(link.href)}
+                  className={`block text-lg font-medium ${isActive ? 'text-brand-primary' : 'text-slate-800 hover:text-brand-primary'}`}
+                >
+                  {link.name}
+                </a>
+              );
+            })}
             <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
