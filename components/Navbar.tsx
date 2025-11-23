@@ -1,0 +1,106 @@
+import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+
+const Navbar: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Services', href: '#services' },
+    { name: 'Use Cases', href: '#use-cases' },
+    { name: 'À propos', href: '#about' },
+    { name: 'Ressources', href: '#resources' },
+    { name: 'Carrières', href: '#jobs' },
+  ];
+
+  return (
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/80 backdrop-blur-xl border-b border-slate-100 shadow-sm' : 'bg-transparent'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          
+          {/* Logo */}
+          <div className="flex-shrink-0 flex items-center cursor-pointer transition-opacity hover:opacity-80" onClick={() => window.location.href = '#home'}>
+            <img 
+                src="https://i.postimg.cc/ZRv5wZn2/logo-consilia-data-removebg-preview.png" 
+                alt="Consilia-Data Logo" 
+                className="h-8 md:h-10 w-auto object-contain" 
+            />
+          </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center gap-10">
+            <div className="flex space-x-8">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm font-medium text-slate-600 hover:text-brand-primary transition-colors relative group"
+                >
+                  {link.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-brand transition-all group-hover:w-full"></span>
+                </a>
+              ))}
+            </div>
+            
+            <a 
+                href="#contact" 
+                className="bg-brand-dark text-white hover:bg-slate-800 px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-brand-dark/20 hover:shadow-xl hover:-translate-y-0.5 flex items-center gap-2"
+            >
+                Demander une démo
+            </a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden flex items-center">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-slate-600 hover:text-brand-primary focus:outline-none p-2 transition-colors"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      {/* Decorative Bottom Line (only when not scrolled, for initial impact) */}
+      {!scrolled && (
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-primary/20 to-transparent"></div>
+      )}
+
+      {/* Mobile Menu Dropdown */}
+      {isOpen && (
+        <div className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-slate-100 shadow-xl animate-fade-in-up lg:hidden">
+          <div className="flex flex-col p-6 space-y-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="block text-lg font-medium text-slate-800 hover:text-brand-primary"
+              >
+                {link.name}
+              </a>
+            ))}
+            <a
+                href="#contact"
+                onClick={() => setIsOpen(false)}
+                className="block w-full py-4 text-center rounded-xl text-base font-bold bg-brand-dark text-white shadow-lg mt-4"
+            >
+                Demander une démo
+            </a>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
