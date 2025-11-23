@@ -24,12 +24,13 @@ const Footer: React.FC = () => {
           <div className="md:col-span-3">
             <h4 className="font-bold text-brand-dark mb-8 text-sm uppercase tracking-widest">Plan du site</h4>
             <ul className="space-y-4 text-sm text-slate-500 font-medium">
-                <li><a href="#about" className="hover:text-brand-primary transition-colors">À propos</a></li>
-                <li><a href="#services" className="hover:text-brand-primary transition-colors">Nos Services</a></li>
-                <li><a href="#values" className="hover:text-brand-primary transition-colors">Nos Valeurs</a></li>
+                <li><a href="#home" className="hover:text-brand-primary transition-colors">Accueil</a></li>
+                <li><a href="#services" className="hover:text-brand-primary transition-colors">Services</a></li>
+                <li><a href="#values" className="hover:text-brand-primary transition-colors">Valeurs</a></li>
                 <li><a href="#expertise" className="hover:text-brand-primary transition-colors">Expertises</a></li>
-                <li><a href="#jobs" className="hover:text-brand-primary transition-colors">Carrières</a></li>
+                <li><a href="#jobs" className="hover:text-brand-primary transition-colors">Emplois</a></li>
                 <li><a href="#training" className="hover:text-brand-primary transition-colors">Formations</a></li>
+                <li><a href="#clients" className="hover:text-brand-primary transition-colors">Nos Clients</a></li>
             </ul>
           </div>
           

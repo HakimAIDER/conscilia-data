@@ -4,12 +4,12 @@ import Hero from './components/Hero';
 import Services from './components/Services';
 import Values from './components/Values';
 import Expertise from './components/Expertise';
-import About from './components/About';
 import Jobs from './components/Jobs';
 import Training from './components/Training';
+import Clients from './components/Clients';
+import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Clients from './components/Clients';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -42,14 +42,18 @@ function App() {
   return (
     <div className="min-h-screen bg-brand-light font-sans text-brand-dark animate-fade-in-up">
       <Navbar />
+      
+      {/* Sections ordered by the menu request */}
       <Hero />
-      <About />
       <Services />
       <Values />
       <Expertise />
       <Jobs />
       <Training />
       <Clients />
+      
+      {/* Mandatory sections at the end */}
+      <About />
       <Contact />
       <Footer />
     </div>
