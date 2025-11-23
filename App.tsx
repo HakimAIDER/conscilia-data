@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
-import WhyConsilia from './components/WhyConsilia';
-import UseCases from './components/UseCases';
+import Values from './components/Values';
+import Expertise from './components/Expertise';
 import About from './components/About';
-import Resources from './components/Resources';
 import Jobs from './components/Jobs';
+import Training from './components/Training';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Clients from './components/Clients';
@@ -43,13 +43,13 @@ function App() {
     <div className="min-h-screen bg-brand-light font-sans text-brand-dark animate-fade-in-up">
       <Navbar />
       <Hero />
-      <Clients />
-      <Services />
-      <WhyConsilia />
-      <UseCases />
       <About />
-      <Resources />
+      <Services />
+      <Values />
+      <Expertise />
       <Jobs />
+      <Training />
+      <Clients />
       <Contact />
       <Footer />
     </div>
